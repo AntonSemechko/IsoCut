@@ -1,4 +1,9 @@
 function MatchAxesView(ha_ref,ha_src,zoom_off)
+% Match view of source axis to a reference axis.
+%
+% AUTHOR: Anton Semechko (a.semechko@gmail.com)
+%
+
 
 if nargin<3 || isempty(zoom_off), zoom_off=false; end
 
