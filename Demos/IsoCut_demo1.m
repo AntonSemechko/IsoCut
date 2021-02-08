@@ -49,6 +49,7 @@ function IsoCut_demo1(n,k)
 if nargin<1 || isempty(n)
     n=1;
 elseif ~isnumeric(n) || ~isscalar(n) || ~ismember(n,1:3)
+    n=1;
     fprintf(2,"Invalid entry for 'n'. Using default setting n=1.")
 end
 
