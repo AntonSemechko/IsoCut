@@ -42,7 +42,7 @@ Try calling `IsoCut_demo2` different values of `k`.
 The previous demos showed how to extract the coordinates of the cuts/iso-contours. However, there may be applications that
 require insertion of the iso-contour polyline into the surface mesh. Doing so, for example, would allow us to perform 
 'surgery' on the surface so that the faces of the modified mesh to one side of the cut can be neatly separated from the 
-faces on the other side to obtain two separate meshes. ***The cuts can be planar or non-planar. However, they must be closed 
+faces on the other side to obtain two separate meshes. ***The cuts can be planar or non-planar, though they must be closed 
 and non self-intersecting.*** 
 
 	iv=0.6;				% iso-value; can vary between 0.01 and 0.99
