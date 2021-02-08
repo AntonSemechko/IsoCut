@@ -15,7 +15,7 @@ with sequentially ordered vertices
 Extract and visualize planar contours at the intersection of mesh with k uniformly spaced cutting planes:
 	
 	n=1; 				% index of principal axis specifying cutting plane normal
-	k=20;				% number of cuts
+	k=50;				% number of cuts
 	IsoCut_demo1(n,k)
 	
 ![Planar cuts](Images/demo1.jpg)
@@ -27,12 +27,12 @@ Try calling `IsoCut_demo1` with different values of `k` and `n`. Inspect code fo
 
 Examples of iso-contours on a unit sphere:
 	
-	k=20;				% number of level sets; must be an integer between 1 and 20
+	k=20;				% number of level sets
 	IsoCut_demo2(k)
 
 ![Non-planar cuts](Images/demo2.jpg)
 	
-Try calling `IsoCut_demo2` different values of `k`.
+Try calling `IsoCut_demo2` different values of `k`; must be an integer between 1 and 20.
 
 
 ## Demo 3: Modify mesh connectivity to include edges along a cut
@@ -43,20 +43,20 @@ require insertion of the iso-contour polyline into the surface mesh. Doing so, f
 faces on the other side to obtain two separate meshes. ***The cuts can be planar or non-planar. However, they must be closed 
 and non self-intersecting.*** 
 
-	iv=0.6;				% iso-value; can vary between 0.01 and 0.99
+	iv=0.6;				% iso-value
 	IsoCut_demo3(iv)
 
 ![Mesh surgery](Images/demo3.jpg)
 
-Try calling `IsoCut_demo3` different values of `iv`.
+Try calling `IsoCut_demo3` different values of `iv`; must be between 0.01 and 0.99
 
  
 ## Assumptions and Limitations
 
 1. The function `OrderIsoContourVerts` assumes that
-	- computed level sets do not pass through saddle points of the scalar field
+	- computed level sets do not pass through saddle points of the input scalar field
 	- iso-contours extracted from closed surfaces are closed
-	- iso-contours extracted from open surfaces are either open or closed, but the end-points of open contours termite at the 
+	- iso-contours extracted from open surfaces are either open or closed, but the end-points of open contours terminate at the 
 	surface boundary
 
 2. At this time, the function `IsoCut` works only for closed iso-contours. The special case where the cut intersects
@@ -64,13 +64,12 @@ Try calling `IsoCut_demo3` different values of `iv`.
    (a) the input surface mesh is closed, OR 
    (b) the input surface mesh is open AND the cut does not intersect any of its boundary edges    
 
-3. The level sets that pass through the mesh edges are computed using linear interpolation. *If the field evaluated at 
-the mesh vertices is produced by a ***nonlinear*** function (F), the iso-contours computed with `IsoContour.m` will be 
-approximations of the corresponding level sets of F.* In those cases, the only way to increase the accuracy of the 
-extracted iso-contours is to linearly subdivide the mesh (prior to calculation of the scalar field at the vertices) until
-the error is below desired tolerance (e.g., see [TriQuad.m] from the [S2-Sampling-Toolbox] repo). If there is sufficient
-interest in an accurate extraction of iso-contours for nonlinear scalar fields, I can incorporate a zero-finding algorithm
-into the 'IsoContour' function, sometime in the future.
+3. Level sets are computed using linear interpolation. *If the field defined at the mesh vertices is produced by a 
+***nonlinear*** function (F), the iso-contours computed with `IsoContour.m` will be approximations of the corresponding level 
+sets of F.* In those cases, the only way to increase the accuracy of the extracted iso-contours is to linearly subdivide the 
+mesh (prior to calculation of the scalar field at the vertices) until the error is below desired tolerance (e.g., see [TriQuad.m]
+from the [S2-Sampling-Toolbox] repo). If there is sufficient interest in an accurate extraction of iso-contours for nonlinear scalar
+fields, I can incorporate a zero-finding algorithm into the 'IsoContour' function, sometime in the future.
 
 If you encounter any bugs/problems with this code you can e-mail me or repot the issue [here].
 
