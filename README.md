@@ -1,5 +1,7 @@
 # IsoCut
 
+[![View IsoCut on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/87112-isocut)
+
 IsoCut Toolbox is a set of Matlab functions for cutting triangular surface meshes along level set(s) of scalar fields 
 defined at the mesh vertices. The three primary functions are:
 
@@ -40,7 +42,7 @@ Try calling `IsoCut_demo2` different values of `k`; must be an integer between 1
 The previous demos showed how to extract the coordinates of the cuts/iso-contours. However, there may be applications that
 require insertion of the iso-contour polyline into the surface mesh. Doing so, for example, would allow us to perform 
 'surgery' on the surface so that the faces of the modified mesh to one side of the cut can be neatly separated from the 
-faces on the other side to obtain two separate meshes. ***The cuts can be planar or non-planar. However, they must be closed 
+faces on the other side to obtain two separate meshes. ***The cuts can be planar or non-planar, though they must be closed 
 and non self-intersecting.*** 
 
 	iv=0.6;				% iso-value
