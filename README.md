@@ -1,6 +1,6 @@
 # IsoCut
 
-IsoCut Toolbox is a set of functions for cutting triangular surface meshes along level set(s) of scalar fields 
+IsoCut Toolbox is a set of Matlab functions for cutting triangular surface meshes along level set(s) of scalar fields 
 defined at the mesh vertices. The three primary functions are:
 
 >**`IsoContour.m`**: extracts and visualizes line segments comprising level sets of a scalar field 
