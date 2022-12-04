@@ -2,10 +2,10 @@ function [TR,idx_v]=RemoveNonRefVerts(TR)
 % Remove non-referenced mesh vertices.
 %
 % INPUT:
-%   - TR    : input surface mesh represented as an object of 'TriRep' class,
+%   - TR    : input mesh represented as an object of 'TriRep' class,
 %             'triangulation' class, or a cell such that TR={Tri,V}, where
-%             Tri is an M-by-3 array of faces and V is an N-by-3 array of 
-%             vertex coordinates.
+%             Tri is an M-by-k array of faces and V is an N-by-k array of 
+%             vertex coordinates, for k>=3. 
 %
 % OUTPUT:
 %   - TR    : output mesh; same format as the input mesh.
@@ -17,14 +17,14 @@ function [TR,idx_v]=RemoveNonRefVerts(TR)
 
 % Face and vertex lists
 [Tri,V,fmt]=GetMeshData(TR);
-d=size(Tri,2);
+k=size(Tri,2);
 
 [idx_v,~,idx]=unique(Tri(:));
 V=V(idx_v,:);
 
 Tri=(1:size(V,1))';
 Tri=Tri(idx);
-Tri=reshape(Tri,[],d);
+Tri=reshape(Tri,[],k);
 
 switch fmt
     case 1

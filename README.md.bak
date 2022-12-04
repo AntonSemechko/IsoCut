@@ -14,7 +14,6 @@ Examples illustrating potential uses of the primary functions are provided below
 
 
 ## FAQs:
-
 Q : What is a scalar field?\
 A : A function that maps spatial coordinates to a real value. 
 
@@ -69,9 +68,18 @@ Try calling `IsoCut_demo3` different values of `iv`; must be between 0.01 and 0.
  
 ## Assumptions and Limitations
 
-1. The function `OrderIsoContourVerts` assumes that computed level sets do not pass through saddle points of the input scalar field.
+1. The function `OrderIsoContourVerts` assumes that
+	- computed level sets do not pass through saddle points of the input scalar field
+	- iso-contours extracted from closed surfaces are closed
+	- iso-contours extracted from open surfaces are either open or closed, but the end-points of open contours terminate at the 
+	surface boundary
 
-2. Level sets are computed using linear interpolation. *If the field defined at the mesh vertices is produced by a 
+2. At this time, the function `IsoCut` works only for closed iso-contours. The special case where the cut intersects
+ with boundary edges is not yet supported. You do NOT have to worry about this exception if 
+   (a) the input surface mesh is closed, OR 
+   (b) the input surface mesh is open AND the cut does not intersect any of its boundary edges    
+
+3. Level sets are computed using linear interpolation. *If the field defined at the mesh vertices is produced by a 
 ***nonlinear*** function (F), the iso-contours computed with `IsoContour.m` will be approximations of the corresponding level 
 sets of F.* In those cases, the only way to increase the accuracy of the extracted iso-contours is to linearly subdivide the 
 mesh (prior to calculation of the scalar field at the vertices) until the error is below desired tolerance (e.g., see [TriQuad.m]

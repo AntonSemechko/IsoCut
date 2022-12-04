@@ -47,49 +47,49 @@ function IsoCut_demo1(n,k)
 %% Check the inputs
 % -------------------------------------------------------------------------
 if nargin<1 || isempty(n)
-    n=1;
+    n = 1;
 elseif ~isnumeric(n) || ~isscalar(n) || ~ismember(n,1:3)
-    n=1;
+    n = 1;
     fprintf(2,"Invalid entry for 'n'. Using default setting n=1.")
 end
 
 if nargin<2 || isempty(k)
-    k=20;
+    k = 20;
 elseif ~isnumeric(k) || ~isscalar(k) || k<1 || k>100 || k~=round(k)
-    k=20;
+    k = 20;
     fprintf(2,"Invalid entry for 'k'. Using default setting k=20.")
 end
 
 
 %% Step 1: Load mesh
-TR=load('sample_meshes.mat','tooth');
-TR=TR.tooth;
+TR = load('sample_isocut_meshes.mat','tooth');
+TR = TR.tooth;
 
 
 %% Step 2: Cut-plane normal. Use principal axis of covariance matrix for demo
-X=TR.vertices;
-Xo=mean(X);
-dX=bsxfun(@minus,X,Xo);
-C=dX'*dX;
-[R,~]=svd(C); % principal axes are stacked along columns of R
+X = TR.vertices;
+Xo = mean(X);
+dX = bsxfun(@minus,X,Xo);
+C = dX'*dX;
+[R,~] = svd(C); % principal axes are stacked along columns of R
 
 
 %% Step 3: Define scalar field. Mesh mesh will be cut along level sets of
 % this field.
-F=dX*R(:,n); % project vertices on the n-th pricipal axis
+F = dX*R(:,n); % project vertices on the n-th pricipal axis
 
-F=F-min(F);
-[hm,ha,hb,hl]=VisualizeScalarFieldOnTriMesh(TR,F); % visualize mesh and scalar field
+F = F-min(F);
+[hm,ha,hb,hl] = VisualizeScalarFieldOnTriMesh(TR,F); % visualize mesh and scalar field
 colormap(ha,'parula')
 
 
 %% Step 4: Cut the mesh using k uniformly spaced planes
-[Q,iv,VT]=IsoContour(TR,F,k,ha); % information about the iso-contours is stored in the Q and VT variables
+[Q,iv,VT] = IsoContour(TR,F,k,ha); % information about the iso-contours is stored in the Q and VT variables
 
 
 %% Step 5: Make sure vertices making up the iso-contours are ordered sequentially.
 % This step is optional, and only necessary if you are using the iso-contours for
 % something other than visualization.
- [C,VT_out]=OrderIsoContourVerts(Q,VT); % coordinates of the contours are in the cell C. To associate contours with specific iso-value/level-set, call OrderIsoContourVerts(Q{i},VT{i}) separately for each iso-value iv(i), 1<=i<=k 
+ [C,VT_out] = OrderIsoContourVerts(Q,VT); % coordinates of the contours are in the cell C. To associate contours with specific iso-value/level-set, call OrderIsoContourVerts(Q{i},VT{i}) separately for each iso-value iv(i), 1<=i<=k 
 
  
