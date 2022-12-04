@@ -30,8 +30,8 @@ A : That depends on your application. Check out the demos for some examples. One
 
 Extract and visualize planar contours at the intersection of the mesh with k uniformly spaced cutting planes:
 	
-	n = 1;				% index of principal axis specifying cutting plane normal
-	k = 50;				% number of cuts
+	n = 1;	% index of principal axis specifying cutting plane normal
+	k = 50;	% number of cuts
 	IsoCut_demo1(n,k)
 	
 ![Planar cuts](Images/demo1.jpg)
@@ -43,7 +43,7 @@ Try calling `IsoCut_demo1` with different values of `n` and `k`. Inspect code fo
 
 Examples of iso-contours on a unit sphere:
 	
-	k = 20;				% number of level sets
+	k = 20;	% number of level sets
 	IsoCut_demo2(k)
 
 ![Non-planar cuts](Images/demo2.jpg)
@@ -59,7 +59,7 @@ require insertion of the iso-contour polyline into the surface mesh. Doing so, f
 faces on the other side to obtain two separate meshes. ***The cuts can be planar or non-planar, though they must be closed 
 and non self-intersecting.*** 
 
-	iv = 0.6;			% iso-value
+	iv = 0.6; % iso-value
 	IsoCut_demo3(iv)
 
 ![Mesh surgery](Images/demo3.jpg)
